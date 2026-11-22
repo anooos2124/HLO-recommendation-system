@@ -68,10 +68,6 @@ tests/                Functional and methodological checks
 
 The ontology is preserved byte for byte. The resource catalog is separate and uses a declared duration extension. Development data and saved development results are synthetic. Pretrained and fine-tuned mT5 weights are not distributed. Dueling Double DQN is an optional transition-based experiment and is not enabled in the default recommendation pipeline.
 
-## Notebooks
+## Documentation
 
-[Notebook workflows](Notebook/README.md) cover data, training, SPARQL execution, evaluation and adaptive recommendation using the existing package.
-
-## HLO ontology follow-up
-
-[Ontology experiment, Colab instructions and results](docs/HLO-Follow-Up-AR.md)
+[Research Methodology](docs/methodology.md) · [Data Contracts](docs/data_contracts.md) · [Experimental Protocol](docs/experiments.md) · [Notebook Workflows](Notebook/README.md) · [Ontology Experiment](docs/HLO-Follow-Up-AR.md)
