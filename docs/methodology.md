@@ -1,5 +1,7 @@
 # Research Methodology
 
+![System Architecture and Research Methodology](methodology_diagram.png)
+
 This document outlines the formal methodology and system architecture implemented in `hlo_recommender`. The pipeline addresses context-aware educational resource retrieval and adaptive ranking over the Healthcare Learning Ontology (HLO).
 
 ## 1. Problem Formulation
