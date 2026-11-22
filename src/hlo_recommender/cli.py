@@ -14,6 +14,7 @@ from .knowledge import HLO
 from .models.bkt import BKTParameters, LearnerStore, load_parameters, predict_events
 from .models.mt5 import download_model
 from .pipeline import Runtime
+from .ontology_data import OntologyRuntime, generate_ontology_data
 from .training import train_bkt, train_mt5
 
 def parser():
@@ -24,6 +25,8 @@ def parser():
     data = commands.add_parser('data').add_subparsers(dest='action', required=True)
     development = data.add_parser('development')
     development.add_argument('--seed', type=int, default=42)
+    ontology = data.add_parser('ontology')
+    ontology.add_argument('--output', required=True)
     check = data.add_parser('validate')
     check.add_argument('--directory', required=True)
     split = data.add_parser('split')
@@ -42,6 +45,8 @@ def parser():
         sub.add_argument('--allow-synthetic', action='store_true')
         if name == 'mt5':
             sub.add_argument('--check-only', action='store_true')
+            sub.add_argument('--ontology-data')
+            sub.add_argument('--output')
     evaluate = commands.add_parser('evaluate').add_subparsers(dest='target', required=True)
     q = evaluate.add_parser('queries')
     q.add_argument('--data', required=True)
@@ -94,7 +99,7 @@ def run(args):
         return download_model(args.model, args.output, args.revision)
     if args.command == 'train':
         if args.model == 'mt5':
-            return train_mt5(args.training_config, allow_synthetic=args.allow_synthetic, check_only=args.check_only)
+            return train_mt5(args.training_config, allow_synthetic=args.allow_synthetic, check_only=args.check_only, ontology_data=args.ontology_data, output=args.output)
         if args.model == 'bkt':
             return train_bkt(args.training_config, allow_synthetic=args.allow_synthetic)
         from .models.dueling import train_policy
@@ -103,6 +108,8 @@ def run(args):
         return run_experiment(args.experiment_config, generator_override=args.generator, checkpoint_override=args.checkpoint, output_override=args.output)
     if args.command == 'data':
         root = Path(args.config).resolve().parent.parent
+        if args.action == 'ontology':
+            return generate_ontology_data(args.config, args.output)
         if args.action == 'development':
             return create_development_data(root, args.seed)
         if args.action == 'split':
@@ -160,12 +167,15 @@ def run(args):
         write_jsonl(output / 'records.jsonl', records)
         return metrics
     cfg = config(args.config)
-    runtime = Runtime(cfg)
+    ontology_evaluation = args.command == 'evaluate' and cfg.get('task') == 'ontology_parents'
+    runtime = OntologyRuntime(cfg) if ontology_evaluation else Runtime(cfg)
     if args.command == 'inspect':
         return runtime.knowledge.statistics()
     if args.command == 'evaluate':
         rows = read_jsonl(args.data)
         validate_questions(rows)
+        if ontology_evaluation:
+            runtime.prepare_references(rows)
         if args.predictions:
             predictions = aligned_predictions(rows, args.predictions, 'sparql')
         else:
@@ -178,7 +188,10 @@ def run(args):
         if args.predictions:files['predictions']=args.predictions
         elif args.checkpoint:files['checkpoint_manifest']=Path(args.checkpoint)/'manifest.json'
         result.update(provenance(seed=cfg['seed'],files=files,task='query_evaluation'))
-        write_json(Path(new_run(args.output)) / 'metrics.json', result)
+        output = new_run(args.output)
+        write_json(output / 'metrics.json', result)
+        write_jsonl(output / 'predictions.jsonl', [{'id': row['id'], 'sparql': prediction}
+                                                   for row, prediction in zip(rows, predictions)])
         return result
     if args.command == 'observe':
         store = LearnerStore(args.database, load_parameters(args.bkt_model) if args.bkt_model else BKTParameters(**cfg['bkt']))

@@ -4,12 +4,14 @@ from dataclasses import asdict
 import json
 import math
 import random
+import sys
 from .data import validate_events, validate_partitions
 from .evaluation import binary_metrics, evaluate_queries
 from .io import config, new_run, provenance, read_jsonl, resolve, write_json, write_jsonl
 from .models.bkt import fit_bkt, predict_events
 from .models.mt5 import decode_candidates, dependencies, serialize_input
 from .pipeline import Runtime
+from .ontology_data import BODY, OntologyRuntime, validate_ontology_training_data
 
 def train_bkt(path, *, allow_synthetic=False):
     cfg = config(path)
@@ -33,27 +35,37 @@ def train_bkt(path, *, allow_synthetic=False):
     write_jsonl(out / 'validation_predictions.jsonl', predictions)
     return record
 
-def train_mt5(path, *, allow_synthetic=False, check_only=False):
+def train_mt5(path, *, allow_synthetic=False, check_only=False, ontology_data=None, output=None):
     cfg = config(path)
     for key in ('epochs', 'batch_size', 'max_input_tokens', 'max_target_tokens', 'num_beams', 'patience'):
         if type(cfg[key]) is not int or cfg[key] <= 0:
             raise ValueError(key + ' must be a positive integer')
     if not 0 < cfg['learning_rate'] or cfg['weight_decay'] < 0 or (not 0 <= cfg['warmup_fraction'] < 1):
         raise ValueError('Invalid optimizer or warmup settings')
-    runtime = Runtime.from_file(resolve(cfg, cfg['runtime']))
-    train_path, val_path = (resolve(cfg, cfg['train']), resolve(cfg, cfg['validation']))
+    if ontology_data:
+        runtime_path, train_path, val_path = validate_ontology_training_data(ontology_data)
+        runtime = OntologyRuntime(config(runtime_path))
+    else:
+        runtime = Runtime.from_file(resolve(cfg, cfg['runtime']))
+        train_path, val_path = (resolve(cfg, cfg['train']), resolve(cfg, cfg['validation']))
     train, val = (read_jsonl(train_path), read_jsonl(val_path))
-    counts = validate_partitions({'train': train, 'validation': val}, require_reviewed=not allow_synthetic)
+    counts = validate_partitions({'train': train, 'validation': val},
+                                 require_reviewed=not (allow_synthetic or ontology_data))
+    if ontology_data:
+        if {row['data_status'] for row in train + val} != {'ontology_derived'}:
+            raise ValueError('Ontology training requires ontology-derived records')
+        runtime.prepare_references(train + val)
+    else:
+        for row in train + val:
+            runtime.runner.execute(row['sparql'])
     schemas = {row['id']: runtime.grounder.schema_text(row['question']) for row in train + val}
-    for row in train + val:
-        runtime.runner.execute(row['sparql'])
     if check_only:
         return {'status': 'data_validated', 'counts': counts, 'model_loaded': False}
     torch, tokenizer_cls, model_cls = dependencies()
     base = resolve(cfg, cfg['base_checkpoint'])
     if not base.is_dir():
         raise ValueError('Download the base mT5 checkpoint before training')
-    out = new_run(resolve(cfg, cfg['output']))
+    out = new_run(output or resolve(cfg, cfg['output']))
     random.seed(cfg['seed'])
     torch.manual_seed(cfg['seed'])
     if torch.cuda.is_available():
@@ -83,7 +95,7 @@ def train_mt5(path, *, allow_synthetic=False, check_only=False):
         for start in range(0, len(order), cfg['batch_size']):
             batch = [train[i] for i in order[start:start + cfg['batch_size']]]
             inputs = tokenizer([serialize_input(r['question'], schemas[r['id']], r['context']) for r in batch], padding=True, return_tensors='pt')
-            targets = tokenizer(text_target=[r['sparql'] for r in batch], padding=True, return_tensors='pt')
+            targets = tokenizer(text_target=[BODY if ontology_data else r['sparql'] for r in batch], padding=True, return_tensors='pt')
             if inputs['input_ids'].shape[-1] > cfg['max_input_tokens']:
                 raise ValueError('Training input exceeds token budget')
             if targets['input_ids'].shape[-1] > cfg['max_target_tokens']:
@@ -105,7 +117,7 @@ def train_mt5(path, *, allow_synthetic=False, check_only=False):
         predictions = []
         for row in val:
             candidates = decode_candidates(model, tokenizer, serialize_input(row['question'], schemas[row['id']], row['context']), **generation)
-            selected = runtime.select(candidates)
+            selected = runtime.select(row['question'], candidates) if ontology_data else runtime.select(candidates)
             predictions.append(selected['query'] or '')
         metrics = evaluate_queries(val, predictions, runtime.runner)
         score = metrics['nonempty_f1']
@@ -113,6 +125,12 @@ def train_mt5(path, *, allow_synthetic=False, check_only=False):
             raise ValueError('Validation requires nonempty reference queries')
         history.append({'epoch': epoch + 1, 'train_loss': sum(losses) / len(losses), 'validation': metrics})
         write_json(out / 'history.json', history)
+        if ontology_data:
+            event = {'epoch': epoch + 1, 'train/loss': history[-1]['train_loss'],
+                     'validation/answer_f1': metrics['answer_f1'],
+                     'validation/nonempty_f1': metrics['nonempty_f1'],
+                     'validation/valid_rate': metrics['valid_rate']}
+            print('HLO_EPOCH ' + json.dumps(event, allow_nan=False), file=sys.stderr, flush=True)
         if score > best:
             best, stale = (score, 0)
             checkpoint = out / 'checkpoint'

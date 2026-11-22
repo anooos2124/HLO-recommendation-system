@@ -1,0 +1,47 @@
+{
+  "n": 2,
+  "answer_f1": 0.5,
+  "nonempty_f1": 0.5,
+  "empty_f1": null,
+  "valid_rate": 0.5,
+  "records": [
+    {
+      "id": "C004-1",
+      "family_id": "C004",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "C004-2",
+      "family_id": "C004",
+      "answer_f1": 0.0,
+      "execution_valid": false,
+      "empty_reference": false,
+      "error": "invalid_sparql"
+    }
+  ],
+  "data_status": [
+    "ontology_derived"
+  ],
+  "created_utc": "2026-11-22T13:42:48.814776+00:00",
+  "seed": 42,
+  "python": "3.12.14",
+  "versions": {
+    "hlo-recommender": "0.2.0",
+    "rdflib": "7.6.0",
+    "numpy": "2.3.5",
+    "scipy": "1.17.0",
+    "torch": null,
+    "transformers": null
+  },
+  "input_sha256": {
+    "data": "061f958482f6f0cb04bfd0e057b6eeac5d315e531b4b550b9346f422e34c5326",
+    "ontology": "b8e8bad2545126b90e5bc2a6d6fdfb47af4846ee8fda39eaf56326bd0e9aa342",
+    "catalog": "9821864fc6b2d6722663c15ff8cdb099074c4fc66b195e567bfa729774411a36",
+    "runtime_config": "1510d38c89c41f41d92396af0a7b0b2415889a36c11ed9b057979710fe5a0b67",
+    "predictions": "e2ccbf7aacff289f084453ff7f49aafa4a8c1100589e790250f94744287a4771"
+  },
+  "task": "query_evaluation"
+}

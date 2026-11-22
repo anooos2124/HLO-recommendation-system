@@ -71,3 +71,7 @@ The ontology is preserved byte for byte. The resource catalog is separate and us
 ## Notebooks
 
 [Notebook workflows](Notebook/README.md) cover data, training, SPARQL execution, evaluation and adaptive recommendation using the existing package.
+
+## HLO ontology follow-up
+
+[Ontology experiment, Colab instructions and results](docs/HLO-Follow-Up-AR.md) · [Shared conversation](docs/HLO-Shared-Conversation.md)

@@ -16,7 +16,7 @@ def validate_questions(rows: list[dict], *, require_reviewed: bool=False) -> Non
         if not isinstance(row['context'], dict):
             raise ValueError('Question context must be an object')
         ids.append(row['id'])
-        if row['data_status'] not in {'synthetic', 'reviewed'}:
+        if row['data_status'] not in {'synthetic', 'reviewed', 'ontology_derived'}:
             raise ValueError('Unsupported data_status')
         if require_reviewed and row['data_status'] != 'reviewed':
             raise ValueError('Research training requires reviewed data; use --allow-synthetic for development')

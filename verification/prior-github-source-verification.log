@@ -1,0 +1,108 @@
+HLO GitHub snapshot verification
+2026-11-22T13:36:34Z
+commit 94e208e9d88e511cf22e1f72b06737afdb973a8d
+subject Document automatic inline Colab charts and training reports
+
+Repository manifest
+.github/workflows/tests.yml: OK
+.gitignore: OK
+Makefile: OK
+Notebook/Data/data.ipynb: OK
+Notebook/Evaluation/evaluation.ipynb: OK
+Notebook/Queries/sparql.ipynb: OK
+Notebook/README.md: OK
+Notebook/Recommendation/recommendation.ipynb: OK
+Notebook/Training/bkt.ipynb: OK
+Notebook/Training/mt5.ipynb: OK
+Notebook/Training/policy.ipynb: OK
+README.md: FAILED
+REFERENCES.bib: OK
+configs/aliases.json: OK
+configs/bkt.development.toml: OK
+configs/bkt.toml: OK
+configs/default.toml: OK
+configs/experiment.toml: OK
+configs/mt5.development.toml: OK
+configs/mt5.toml: OK
+configs/policy.toml: OK
+data/development/assessments.test.jsonl: OK
+data/development/assessments.train.jsonl: OK
+data/development/assessments.validation.jsonl: OK
+data/development/catalog.ttl: OK
+data/development/manifest.json: OK
+data/development/questions.test.jsonl: OK
+data/development/questions.train.jsonl: OK
+data/development/questions.validation.jsonl: OK
+data/development/resources.json: OK
+data/ontology/HLO_Template_LLM.owl: OK
+data/ontology/source.json: OK
+data/reference/ontology_checks.csv: OK
+data/reference/reported_ranking.csv: OK
+data/reference/source.json: OK
+data/reviewed/README.md: OK
+docs/architecture.png: OK
+docs/data_contracts.md: OK
+docs/experiments.md: OK
+examples/results/bkt_model.json: OK
+examples/results/bkt_test.json: OK
+examples/results/experiment.json: OK
+examples/results/integration.json: OK
+examples/results/integration_assessments.jsonl: OK
+examples/results/metrics.csv: OK
+examples/results/mt5_preflight.json: OK
+examples/verification.json: OK
+pyproject.toml: OK
+requirements-tested.txt: OK
+src/hlo_recommender/__init__.py: OK
+src/hlo_recommender/__main__.py: OK
+src/hlo_recommender/cli.py: OK
+src/hlo_recommender/data.py: OK
+src/hlo_recommender/development.py: OK
+src/hlo_recommender/evaluation.py: OK
+src/hlo_recommender/experiments.py: OK
+src/hlo_recommender/io.py: OK
+src/hlo_recommender/knowledge.py: OK
+src/hlo_recommender/models/__init__.py: OK
+src/hlo_recommender/models/bkt.py: OK
+src/hlo_recommender/models/dueling.py: OK
+src/hlo_recommender/models/mt5.py: OK
+src/hlo_recommender/pipeline.py: OK
+src/hlo_recommender/query.py: OK
+src/hlo_recommender/recommendation.py: OK
+src/hlo_recommender/training.py: OK
+tests/test_research_pipeline.py: OK
+sha256sum: WARNING: 1 computed checksum did NOT match
+
+Python syntax, notebooks and ontology XML
+19 Python files parsed; 8 notebooks parsed; ontology XML parsed
+
+Required arguments from the shared training script
+The ontology command and ontology-data flag are absent from the GitHub snapshot.
+
+Unit tests
+test_adaptive_ranking_changes_with_mastery (test_research_pipeline.ResearchPipelineTests.test_adaptive_ranking_changes_with_mastery) ... ok
+test_bkt_updates_follow_assessment_evidence (test_research_pipeline.ResearchPipelineTests.test_bkt_updates_follow_assessment_evidence) ... ok
+test_catalog_metadata_matches_rdf (test_research_pipeline.ResearchPipelineTests.test_catalog_metadata_matches_rdf) ... ok
+test_eligibility_precedes_ranking (test_research_pipeline.ResearchPipelineTests.test_eligibility_precedes_ranking) ... ok
+test_event_updates_are_idempotent_and_ordered (test_research_pipeline.ResearchPipelineTests.test_event_updates_are_idempotent_and_ordered) ... ok
+test_execution_evaluation_handles_projection_and_empty_answers (test_research_pipeline.ResearchPipelineTests.test_execution_evaluation_handles_projection_and_empty_answers) ... ok
+test_invalid_policy_transitions_are_rejected_without_torch (test_research_pipeline.ResearchPipelineTests.test_invalid_policy_transitions_are_rejected_without_torch) ... ok
+test_missing_model_never_falls_back_to_a_template (test_research_pipeline.ResearchPipelineTests.test_missing_model_never_falls_back_to_a_template) ... ok
+test_non_resource_projection_is_rejected (test_research_pipeline.ResearchPipelineTests.test_non_resource_projection_is_rejected) ... ok
+test_predictive_and_ranking_metrics (test_research_pipeline.ResearchPipelineTests.test_predictive_and_ranking_metrics) ... ok
+test_query_validation_rejects_external_access_and_unknown_identifiers (test_research_pipeline.ResearchPipelineTests.test_query_validation_rejects_external_access_and_unknown_identifiers) ... ok
+test_query_validation_rejects_incompatible_declared_types (test_research_pipeline.ResearchPipelineTests.test_query_validation_rejects_incompatible_declared_types) ... ok
+test_question_families_are_disjoint (test_research_pipeline.ResearchPipelineTests.test_question_families_are_disjoint) ... ok
+test_schema_selection_does_not_read_reference_answers (test_research_pipeline.ResearchPipelineTests.test_schema_selection_does_not_read_reference_answers) ... ok
+test_source_ontology_is_unchanged (test_research_pipeline.ResearchPipelineTests.test_source_ontology_is_unchanged) ... ok
+test_synthetic_training_requires_explicit_permission (test_research_pipeline.ResearchPipelineTests.test_synthetic_training_requires_explicit_permission) ... ok
+test_time_constraint_changes_retrieval (test_research_pipeline.ResearchPipelineTests.test_time_constraint_changes_retrieval) ... ok
+test_unrecognized_question_requires_clarification (test_research_pipeline.ResearchPipelineTests.test_unrecognized_question_requires_clarification) ... ok
+
+----------------------------------------------------------------------
+Ran 18 tests in 3.174s
+
+OK
+
+Unit test exit code: 0
+Training status: no new training run.

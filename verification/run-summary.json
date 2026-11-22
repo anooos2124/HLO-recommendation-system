@@ -1,0 +1,62 @@
+{
+  "repository": "https://github.com/asgmodel/recommendation-system.git",
+  "requested_ref": "94e208e9d88e511cf22e1f72b06737afdb973a8d",
+  "started_utc": "2026-11-22T13:41:53.531080+00:00",
+  "stages": {
+    "install": {
+      "status": "passed",
+      "started_utc": "2026-11-22T13:41:53.539084+00:00",
+      "exit_code": 0,
+      "finished_utc": "2026-11-22T13:42:00.203325+00:00"
+    },
+    "unit_tests": {
+      "status": "passed",
+      "started_utc": "2026-11-22T13:42:00.203426+00:00",
+      "exit_code": 0,
+      "finished_utc": "2026-11-22T13:42:04.507266+00:00"
+    },
+    "generate_ontology_questions": {
+      "status": "passed",
+      "started_utc": "2026-11-22T13:42:04.507866+00:00",
+      "exit_code": 0,
+      "finished_utc": "2026-11-22T13:42:13.920139+00:00"
+    },
+    "validate_data": {
+      "status": "passed",
+      "started_utc": "2026-11-22T13:42:13.920316+00:00",
+      "exit_code": 0,
+      "finished_utc": "2026-11-22T13:42:14.413768+00:00"
+    },
+    "mt5_preflight": {
+      "status": "passed",
+      "started_utc": "2026-11-22T13:42:14.413891+00:00",
+      "exit_code": 0,
+      "finished_utc": "2026-11-22T13:42:22.723079+00:00"
+    },
+    "evaluate_template": {
+      "status": "passed",
+      "started_utc": "2026-11-22T13:42:22.723630+00:00",
+      "exit_code": 0,
+      "finished_utc": "2026-11-22T13:42:25.379911+00:00"
+    },
+    "train_mt5": {
+      "status": "skipped",
+      "reason": "Preflight only."
+    },
+    "evaluate_mt5": {
+      "status": "skipped",
+      "reason": "Preflight only."
+    }
+  },
+  "source": "/workspace/scratch/b967f1e9847f/hlo-merge/HLO-recommendation-system-main",
+  "mt5_config_sha256": "4aab015cc0846a7b99626410f39a94b115eb958a9856ebb036a0a8137a3ab6c9",
+  "query_metrics": {
+    "template": {
+      "n": 642,
+      "answer_f1": 1.0,
+      "valid_rate": 1.0
+    }
+  },
+  "status": "preflight_completed",
+  "finished_utc": "2026-11-22T13:42:25.381668+00:00"
+}

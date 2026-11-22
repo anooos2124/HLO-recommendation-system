@@ -1,0 +1,5301 @@
+Run directory: /workspace/scratch/b967f1e9847f/hlo-validated-run/hlo-20261122T134153530966Z
+Copied project: /workspace/scratch/b967f1e9847f/hlo-merge/HLO-recommendation-system-main
+
+[2026-11-22T13:41:53.539056+00:00] install
+$ /opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3 -m pip install -e .
+Defaulting to user installation because normal site-packages is not writeable
+Obtaining file:///workspace/scratch/b967f1e9847f/hlo-validated-run/hlo-20261122T134153530966Z/project
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Checking if build backend supports build_editable: started
+  Checking if build backend supports build_editable: finished with status 'done'
+  Getting requirements to build editable: started
+  Getting requirements to build editable: finished with status 'done'
+  Preparing editable metadata (pyproject.toml): started
+  Preparing editable metadata (pyproject.toml): finished with status 'done'
+Requirement already satisfied: rdflib<8,>=7.1 in /home/agent/.local/lib/python3.12/site-packages (from hlo-recommender==0.2.0) (7.6.0)
+Requirement already satisfied: numpy<3,>=1.26 in /opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages (from hlo-recommender==0.2.0) (2.3.5)
+Requirement already satisfied: scipy<2,>=1.11 in /opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages (from hlo-recommender==0.2.0) (1.17.0)
+Requirement already satisfied: pyparsing<4,>=2.1.0 in /opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages (from rdflib<8,>=7.1->hlo-recommender==0.2.0) (3.3.2)
+Building wheels for collected packages: hlo-recommender
+  Building editable for hlo-recommender (pyproject.toml): started
+  Building editable for hlo-recommender (pyproject.toml): finished with status 'done'
+  Created wheel for hlo-recommender: filename=hlo_recommender-0.2.0-0.editable-py3-none-any.whl size=3085 sha256=01b52757cb42e74067e3c44c5c2359087fd6f742a473692f9fe12cfaea1e9952
+  Stored in directory: /tmp/pip-ephem-wheel-cache-njqovyz6/wheels/40/27/ba/eea1a4dd2704cd7620fed126a7c7c21822f1c16e18bbdef3da
+Successfully built hlo-recommender
+Installing collected packages: hlo-recommender
+  Attempting uninstall: hlo-recommender
+    Found existing installation: hlo-recommender 0.2.0
+    Uninstalling hlo-recommender-0.2.0:
+      Successfully uninstalled hlo-recommender-0.2.0
+Successfully installed hlo-recommender-0.2.0
+
+[2026-11-22T13:42:00.203366+00:00] unit_tests
+$ /opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3 -m unittest discover -s tests -v
+test_adaptive_ranking_changes_with_mastery (test_research_pipeline.ResearchPipelineTests.test_adaptive_ranking_changes_with_mastery) ... ok
+test_bkt_updates_follow_assessment_evidence (test_research_pipeline.ResearchPipelineTests.test_bkt_updates_follow_assessment_evidence) ... ok
+test_catalog_metadata_matches_rdf (test_research_pipeline.ResearchPipelineTests.test_catalog_metadata_matches_rdf) ... ok
+test_eligibility_precedes_ranking (test_research_pipeline.ResearchPipelineTests.test_eligibility_precedes_ranking) ... ok
+test_event_updates_are_idempotent_and_ordered (test_research_pipeline.ResearchPipelineTests.test_event_updates_are_idempotent_and_ordered) ... ok
+test_execution_evaluation_handles_projection_and_empty_answers (test_research_pipeline.ResearchPipelineTests.test_execution_evaluation_handles_projection_and_empty_answers) ... ok
+test_invalid_policy_transitions_are_rejected_without_torch (test_research_pipeline.ResearchPipelineTests.test_invalid_policy_transitions_are_rejected_without_torch) ... ok
+test_missing_model_never_falls_back_to_a_template (test_research_pipeline.ResearchPipelineTests.test_missing_model_never_falls_back_to_a_template) ... ok
+test_non_resource_projection_is_rejected (test_research_pipeline.ResearchPipelineTests.test_non_resource_projection_is_rejected) ... ok
+test_predictive_and_ranking_metrics (test_research_pipeline.ResearchPipelineTests.test_predictive_and_ranking_metrics) ... ok
+test_query_validation_rejects_external_access_and_unknown_identifiers (test_research_pipeline.ResearchPipelineTests.test_query_validation_rejects_external_access_and_unknown_identifiers) ... ok
+test_query_validation_rejects_incompatible_declared_types (test_research_pipeline.ResearchPipelineTests.test_query_validation_rejects_incompatible_declared_types) ... ok
+test_question_families_are_disjoint (test_research_pipeline.ResearchPipelineTests.test_question_families_are_disjoint) ... ok
+test_schema_selection_does_not_read_reference_answers (test_research_pipeline.ResearchPipelineTests.test_schema_selection_does_not_read_reference_answers) ... ok
+test_source_ontology_is_unchanged (test_research_pipeline.ResearchPipelineTests.test_source_ontology_is_unchanged) ... ok
+test_synthetic_training_requires_explicit_permission (test_research_pipeline.ResearchPipelineTests.test_synthetic_training_requires_explicit_permission) ... ok
+test_time_constraint_changes_retrieval (test_research_pipeline.ResearchPipelineTests.test_time_constraint_changes_retrieval) ... ok
+test_unrecognized_question_requires_clarification (test_research_pipeline.ResearchPipelineTests.test_unrecognized_question_requires_clarification) ... ok
+
+----------------------------------------------------------------------
+Ran 18 tests in 3.515s
+
+OK
+
+[2026-11-22T13:42:04.507787+00:00] generate_ontology_questions
+$ /opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3 -u -m hlo_recommender data ontology --output /workspace/scratch/b967f1e9847f/hlo-validated-run/hlo-20261122T134153530966Z/ontology-data
+{
+  "created_utc": "2026-11-22T13:42:13.707539+00:00",
+  "seed": 42,
+  "python": "3.12.14",
+  "versions": {
+    "hlo-recommender": "0.2.0",
+    "rdflib": "7.6.0",
+    "numpy": "2.3.5",
+    "scipy": "1.17.0",
+    "torch": null,
+    "transformers": null
+  },
+  "input_sha256": {
+    "ontology": "b8e8bad2545126b90e5bc2a6d6fdfb47af4846ee8fda39eaf56326bd0e9aa342"
+  },
+  "task": "ontology_parents",
+  "questions": {
+    "train": {
+      "records": 1922,
+      "families": 961
+    },
+    "validation": {
+      "records": 642,
+      "families": 321
+    },
+    "test": {
+      "records": 642,
+      "families": 321
+    }
+  },
+  "verified_references": 3206
+}
+
+[2026-11-22T13:42:13.920182+00:00] validate_data
+$ /opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3 -u -m hlo_recommender data validate --directory /workspace/scratch/b967f1e9847f/hlo-validated-run/hlo-20261122T134153530966Z/ontology-data
+{
+  "status": "passed",
+  "questions": {
+    "train": {
+      "records": 1922,
+      "families": 961
+    },
+    "validation": {
+      "records": 642,
+      "families": 321
+    },
+    "test": {
+      "records": 642,
+      "families": 321
+    }
+  }
+}
+
+[2026-11-22T13:42:14.413807+00:00] mt5_preflight
+$ /opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3 -u -m hlo_recommender train mt5 --config /workspace/scratch/b967f1e9847f/hlo-validated-run/hlo-20261122T134153530966Z/project/configs/mt5.toml --ontology-data /workspace/scratch/b967f1e9847f/hlo-validated-run/hlo-20261122T134153530966Z/ontology-data --check-only
+{
+  "status": "data_validated",
+  "counts": {
+    "train": {
+      "records": 1922,
+      "families": 961
+    },
+    "validation": {
+      "records": 642,
+      "families": 321
+    }
+  },
+  "model_loaded": false
+}
+
+[2026-11-22T13:42:22.723273+00:00] evaluate_template
+$ /opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3 -u -m hlo_recommender --config /workspace/scratch/b967f1e9847f/hlo-validated-run/hlo-20261122T134153530966Z/ontology-data/runtime.toml evaluate queries --generator template --data /workspace/scratch/b967f1e9847f/hlo-validated-run/hlo-20261122T134153530966Z/ontology-data/questions.test.jsonl --output /workspace/scratch/b967f1e9847f/hlo-validated-run/hlo-20261122T134153530966Z/evaluation/template
+{
+  "n": 642,
+  "answer_f1": 1.0,
+  "nonempty_f1": 1.0,
+  "empty_f1": null,
+  "valid_rate": 1.0,
+  "records": [
+    {
+      "id": "C004-1",
+      "family_id": "C004",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "C004-2",
+      "family_id": "C004",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "C007-1",
+      "family_id": "C007",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "C007-2",
+      "family_id": "C007",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "C008-1",
+      "family_id": "C008",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "C008-2",
+      "family_id": "C008",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "C011-1",
+      "family_id": "C011",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "C011-2",
+      "family_id": "C011",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "C014-1",
+      "family_id": "C014",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "C014-2",
+      "family_id": "C014",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "C021-1",
+      "family_id": "C021",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "C021-2",
+      "family_id": "C021",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "C023-1",
+      "family_id": "C023",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "C023-2",
+      "family_id": "C023",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "C024-1",
+      "family_id": "C024",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "C024-2",
+      "family_id": "C024",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "ClinicalSkill-1",
+      "family_id": "ClinicalSkill",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "ClinicalSkill-2",
+      "family_id": "ClinicalSkill",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "E008-1",
+      "family_id": "E008",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "E008-2",
+      "family_id": "E008",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H006-1",
+      "family_id": "H006",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H006-2",
+      "family_id": "H006",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H010-1",
+      "family_id": "H010",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H010-2",
+      "family_id": "H010",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H013-1",
+      "family_id": "H013",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H013-2",
+      "family_id": "H013",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H019-1",
+      "family_id": "H019",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H019-2",
+      "family_id": "H019",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H021-1",
+      "family_id": "H021",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H021-2",
+      "family_id": "H021",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H028-1",
+      "family_id": "H028",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H028-2",
+      "family_id": "H028",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H031-1",
+      "family_id": "H031",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H031-2",
+      "family_id": "H031",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H036-1",
+      "family_id": "H036",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H036-2",
+      "family_id": "H036",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H046-1",
+      "family_id": "H046",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H046-2",
+      "family_id": "H046",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H051-1",
+      "family_id": "H051",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H051-2",
+      "family_id": "H051",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H064-1",
+      "family_id": "H064",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H064-2",
+      "family_id": "H064",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H066-1",
+      "family_id": "H066",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H066-2",
+      "family_id": "H066",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H067-1",
+      "family_id": "H067",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H067-2",
+      "family_id": "H067",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H073-1",
+      "family_id": "H073",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H073-2",
+      "family_id": "H073",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H086-1",
+      "family_id": "H086",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H086-2",
+      "family_id": "H086",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H090-1",
+      "family_id": "H090",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H090-2",
+      "family_id": "H090",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H092-1",
+      "family_id": "H092",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H092-2",
+      "family_id": "H092",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H096-1",
+      "family_id": "H096",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H096-2",
+      "family_id": "H096",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H101-1",
+      "family_id": "H101",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H101-2",
+      "family_id": "H101",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H105-1",
+      "family_id": "H105",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H105-2",
+      "family_id": "H105",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H107-1",
+      "family_id": "H107",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H107-2",
+      "family_id": "H107",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H109-1",
+      "family_id": "H109",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H109-2",
+      "family_id": "H109",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H115-1",
+      "family_id": "H115",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H115-2",
+      "family_id": "H115",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H118-1",
+      "family_id": "H118",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H118-2",
+      "family_id": "H118",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H124-1",
+      "family_id": "H124",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H124-2",
+      "family_id": "H124",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H131-1",
+      "family_id": "H131",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H131-2",
+      "family_id": "H131",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H133-1",
+      "family_id": "H133",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H133-2",
+      "family_id": "H133",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H141-1",
+      "family_id": "H141",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H141-2",
+      "family_id": "H141",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H147-1",
+      "family_id": "H147",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H147-2",
+      "family_id": "H147",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H159-1",
+      "family_id": "H159",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H159-2",
+      "family_id": "H159",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H166-1",
+      "family_id": "H166",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H166-2",
+      "family_id": "H166",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H169-1",
+      "family_id": "H169",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H169-2",
+      "family_id": "H169",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H172-1",
+      "family_id": "H172",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H172-2",
+      "family_id": "H172",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H174-1",
+      "family_id": "H174",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H174-2",
+      "family_id": "H174",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H177-1",
+      "family_id": "H177",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H177-2",
+      "family_id": "H177",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H179-1",
+      "family_id": "H179",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H179-2",
+      "family_id": "H179",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H181-1",
+      "family_id": "H181",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H181-2",
+      "family_id": "H181",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H195-1",
+      "family_id": "H195",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H195-2",
+      "family_id": "H195",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H208-1",
+      "family_id": "H208",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H208-2",
+      "family_id": "H208",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H211-1",
+      "family_id": "H211",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H211-2",
+      "family_id": "H211",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H217-1",
+      "family_id": "H217",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H217-2",
+      "family_id": "H217",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H233-1",
+      "family_id": "H233",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H233-2",
+      "family_id": "H233",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H235-1",
+      "family_id": "H235",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H235-2",
+      "family_id": "H235",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H239-1",
+      "family_id": "H239",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H239-2",
+      "family_id": "H239",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H249-1",
+      "family_id": "H249",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H249-2",
+      "family_id": "H249",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H254-1",
+      "family_id": "H254",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H254-2",
+      "family_id": "H254",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H260-1",
+      "family_id": "H260",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H260-2",
+      "family_id": "H260",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H261-1",
+      "family_id": "H261",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H261-2",
+      "family_id": "H261",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H264-1",
+      "family_id": "H264",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H264-2",
+      "family_id": "H264",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H268-1",
+      "family_id": "H268",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H268-2",
+      "family_id": "H268",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H271-1",
+      "family_id": "H271",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H271-2",
+      "family_id": "H271",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H279-1",
+      "family_id": "H279",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H279-2",
+      "family_id": "H279",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H281-1",
+      "family_id": "H281",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H281-2",
+      "family_id": "H281",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H286-1",
+      "family_id": "H286",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H286-2",
+      "family_id": "H286",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H293-1",
+      "family_id": "H293",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H293-2",
+      "family_id": "H293",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H294-1",
+      "family_id": "H294",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H294-2",
+      "family_id": "H294",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H297-1",
+      "family_id": "H297",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H297-2",
+      "family_id": "H297",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H302-1",
+      "family_id": "H302",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H302-2",
+      "family_id": "H302",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H307-1",
+      "family_id": "H307",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H307-2",
+      "family_id": "H307",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H322-1",
+      "family_id": "H322",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H322-2",
+      "family_id": "H322",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H323-1",
+      "family_id": "H323",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H323-2",
+      "family_id": "H323",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H324-1",
+      "family_id": "H324",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H324-2",
+      "family_id": "H324",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H331-1",
+      "family_id": "H331",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H331-2",
+      "family_id": "H331",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H338-1",
+      "family_id": "H338",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H338-2",
+      "family_id": "H338",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H341-1",
+      "family_id": "H341",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H341-2",
+      "family_id": "H341",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H346-1",
+      "family_id": "H346",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H346-2",
+      "family_id": "H346",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H353-1",
+      "family_id": "H353",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H353-2",
+      "family_id": "H353",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H354-1",
+      "family_id": "H354",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H354-2",
+      "family_id": "H354",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H356-1",
+      "family_id": "H356",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H356-2",
+      "family_id": "H356",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H361-1",
+      "family_id": "H361",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H361-2",
+      "family_id": "H361",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H362-1",
+      "family_id": "H362",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H362-2",
+      "family_id": "H362",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H364-1",
+      "family_id": "H364",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H364-2",
+      "family_id": "H364",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H368-1",
+      "family_id": "H368",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H368-2",
+      "family_id": "H368",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H383-1",
+      "family_id": "H383",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H383-2",
+      "family_id": "H383",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H393-1",
+      "family_id": "H393",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H393-2",
+      "family_id": "H393",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H395-1",
+      "family_id": "H395",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H395-2",
+      "family_id": "H395",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H408-1",
+      "family_id": "H408",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H408-2",
+      "family_id": "H408",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H414-1",
+      "family_id": "H414",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H414-2",
+      "family_id": "H414",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H420-1",
+      "family_id": "H420",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H420-2",
+      "family_id": "H420",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H424-1",
+      "family_id": "H424",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H424-2",
+      "family_id": "H424",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H427-1",
+      "family_id": "H427",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H427-2",
+      "family_id": "H427",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H433-1",
+      "family_id": "H433",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H433-2",
+      "family_id": "H433",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H435-1",
+      "family_id": "H435",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H435-2",
+      "family_id": "H435",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H437-1",
+      "family_id": "H437",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H437-2",
+      "family_id": "H437",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H453-1",
+      "family_id": "H453",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H453-2",
+      "family_id": "H453",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H457-1",
+      "family_id": "H457",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H457-2",
+      "family_id": "H457",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H460-1",
+      "family_id": "H460",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H460-2",
+      "family_id": "H460",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H461-1",
+      "family_id": "H461",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H461-2",
+      "family_id": "H461",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H463-1",
+      "family_id": "H463",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H463-2",
+      "family_id": "H463",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H467-1",
+      "family_id": "H467",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H467-2",
+      "family_id": "H467",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H468-1",
+      "family_id": "H468",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H468-2",
+      "family_id": "H468",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H472-1",
+      "family_id": "H472",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H472-2",
+      "family_id": "H472",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H488-1",
+      "family_id": "H488",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H488-2",
+      "family_id": "H488",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H494-1",
+      "family_id": "H494",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H494-2",
+      "family_id": "H494",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H502-1",
+      "family_id": "H502",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H502-2",
+      "family_id": "H502",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H520-1",
+      "family_id": "H520",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H520-2",
+      "family_id": "H520",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H528-1",
+      "family_id": "H528",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H528-2",
+      "family_id": "H528",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H539-1",
+      "family_id": "H539",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H539-2",
+      "family_id": "H539",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H541-1",
+      "family_id": "H541",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H541-2",
+      "family_id": "H541",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H551-1",
+      "family_id": "H551",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H551-2",
+      "family_id": "H551",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H554-1",
+      "family_id": "H554",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H554-2",
+      "family_id": "H554",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H560-1",
+      "family_id": "H560",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H560-2",
+      "family_id": "H560",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H570-1",
+      "family_id": "H570",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H570-2",
+      "family_id": "H570",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H576-1",
+      "family_id": "H576",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H576-2",
+      "family_id": "H576",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H587-1",
+      "family_id": "H587",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H587-2",
+      "family_id": "H587",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H594-1",
+      "family_id": "H594",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H594-2",
+      "family_id": "H594",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H604-1",
+      "family_id": "H604",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H604-2",
+      "family_id": "H604",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H612-1",
+      "family_id": "H612",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H612-2",
+      "family_id": "H612",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H613-1",
+      "family_id": "H613",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H613-2",
+      "family_id": "H613",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H631-1",
+      "family_id": "H631",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H631-2",
+      "family_id": "H631",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H633-1",
+      "family_id": "H633",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H633-2",
+      "family_id": "H633",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H640-1",
+      "family_id": "H640",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H640-2",
+      "family_id": "H640",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H642-1",
+      "family_id": "H642",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H642-2",
+      "family_id": "H642",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H644-1",
+      "family_id": "H644",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H644-2",
+      "family_id": "H644",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H660-1",
+      "family_id": "H660",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H660-2",
+      "family_id": "H660",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H669-1",
+      "family_id": "H669",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H669-2",
+      "family_id": "H669",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H676-1",
+      "family_id": "H676",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H676-2",
+      "family_id": "H676",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H677-1",
+      "family_id": "H677",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H677-2",
+      "family_id": "H677",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H680-1",
+      "family_id": "H680",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H680-2",
+      "family_id": "H680",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H686-1",
+      "family_id": "H686",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H686-2",
+      "family_id": "H686",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H688-1",
+      "family_id": "H688",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H688-2",
+      "family_id": "H688",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H694-1",
+      "family_id": "H694",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H694-2",
+      "family_id": "H694",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H697-1",
+      "family_id": "H697",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H697-2",
+      "family_id": "H697",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H699-1",
+      "family_id": "H699",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H699-2",
+      "family_id": "H699",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H701-1",
+      "family_id": "H701",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H701-2",
+      "family_id": "H701",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H704-1",
+      "family_id": "H704",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H704-2",
+      "family_id": "H704",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H706-1",
+      "family_id": "H706",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H706-2",
+      "family_id": "H706",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H724-1",
+      "family_id": "H724",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H724-2",
+      "family_id": "H724",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H728-1",
+      "family_id": "H728",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H728-2",
+      "family_id": "H728",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H731-1",
+      "family_id": "H731",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H731-2",
+      "family_id": "H731",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H734-1",
+      "family_id": "H734",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H734-2",
+      "family_id": "H734",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H741-1",
+      "family_id": "H741",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H741-2",
+      "family_id": "H741",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H744-1",
+      "family_id": "H744",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H744-2",
+      "family_id": "H744",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H746-1",
+      "family_id": "H746",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H746-2",
+      "family_id": "H746",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H747-1",
+      "family_id": "H747",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H747-2",
+      "family_id": "H747",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H748-1",
+      "family_id": "H748",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H748-2",
+      "family_id": "H748",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H751-1",
+      "family_id": "H751",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H751-2",
+      "family_id": "H751",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H753-1",
+      "family_id": "H753",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H753-2",
+      "family_id": "H753",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H764-1",
+      "family_id": "H764",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H764-2",
+      "family_id": "H764",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H767-1",
+      "family_id": "H767",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H767-2",
+      "family_id": "H767",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H772-1",
+      "family_id": "H772",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H772-2",
+      "family_id": "H772",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H774-1",
+      "family_id": "H774",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H774-2",
+      "family_id": "H774",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H775-1",
+      "family_id": "H775",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H775-2",
+      "family_id": "H775",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H780-1",
+      "family_id": "H780",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H780-2",
+      "family_id": "H780",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H781-1",
+      "family_id": "H781",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H781-2",
+      "family_id": "H781",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H791-1",
+      "family_id": "H791",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H791-2",
+      "family_id": "H791",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H792-1",
+      "family_id": "H792",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H792-2",
+      "family_id": "H792",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H793-1",
+      "family_id": "H793",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H793-2",
+      "family_id": "H793",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H795-1",
+      "family_id": "H795",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H795-2",
+      "family_id": "H795",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H799-1",
+      "family_id": "H799",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H799-2",
+      "family_id": "H799",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H802-1",
+      "family_id": "H802",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H802-2",
+      "family_id": "H802",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H814-1",
+      "family_id": "H814",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H814-2",
+      "family_id": "H814",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H815-1",
+      "family_id": "H815",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H815-2",
+      "family_id": "H815",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H818-1",
+      "family_id": "H818",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H818-2",
+      "family_id": "H818",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H820-1",
+      "family_id": "H820",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H820-2",
+      "family_id": "H820",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H822-1",
+      "family_id": "H822",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H822-2",
+      "family_id": "H822",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H824-1",
+      "family_id": "H824",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H824-2",
+      "family_id": "H824",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H830-1",
+      "family_id": "H830",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H830-2",
+      "family_id": "H830",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H842-1",
+      "family_id": "H842",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H842-2",
+      "family_id": "H842",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H848-1",
+      "family_id": "H848",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H848-2",
+      "family_id": "H848",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H849-1",
+      "family_id": "H849",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H849-2",
+      "family_id": "H849",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H854-1",
+      "family_id": "H854",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H854-2",
+      "family_id": "H854",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H855-1",
+      "family_id": "H855",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H855-2",
+      "family_id": "H855",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H856-1",
+      "family_id": "H856",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H856-2",
+      "family_id": "H856",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H862-1",
+      "family_id": "H862",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H862-2",
+      "family_id": "H862",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H863-1",
+      "family_id": "H863",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H863-2",
+      "family_id": "H863",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H871-1",
+      "family_id": "H871",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H871-2",
+      "family_id": "H871",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H877-1",
+      "family_id": "H877",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H877-2",
+      "family_id": "H877",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H884-1",
+      "family_id": "H884",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "H884-2",
+      "family_id": "H884",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "K003-1",
+      "family_id": "K003",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "K003-2",
+      "family_id": "K003",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "K015-1",
+      "family_id": "K015",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "K015-2",
+      "family_id": "K015",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "K018-1",
+      "family_id": "K018",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "K018-2",
+      "family_id": "K018",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "K022-1",
+      "family_id": "K022",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "K022-2",
+      "family_id": "K022",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "L004-1",
+      "family_id": "L004",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "L004-2",
+      "family_id": "L004",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "L012-1",
+      "family_id": "L012",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "L012-2",
+      "family_id": "L012",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "LearningPath-1",
+      "family_id": "LearningPath",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "LearningPath-2",
+      "family_id": "LearningPath",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "N003-1",
+      "family_id": "N003",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "N003-2",
+      "family_id": "N003",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "N004-1",
+      "family_id": "N004",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "N004-2",
+      "family_id": "N004",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "N007-1",
+      "family_id": "N007",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "N007-2",
+      "family_id": "N007",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "N009-1",
+      "family_id": "N009",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "N009-2",
+      "family_id": "N009",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "N010-1",
+      "family_id": "N010",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "N010-2",
+      "family_id": "N010",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O013-1",
+      "family_id": "O013",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O013-2",
+      "family_id": "O013",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O019-1",
+      "family_id": "O019",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O019-2",
+      "family_id": "O019",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O020-1",
+      "family_id": "O020",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O020-2",
+      "family_id": "O020",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O024-1",
+      "family_id": "O024",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O024-2",
+      "family_id": "O024",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O027-1",
+      "family_id": "O027",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O027-2",
+      "family_id": "O027",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O030-1",
+      "family_id": "O030",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O030-2",
+      "family_id": "O030",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O032-1",
+      "family_id": "O032",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O032-2",
+      "family_id": "O032",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O035-1",
+      "family_id": "O035",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O035-2",
+      "family_id": "O035",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O055-1",
+      "family_id": "O055",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O055-2",
+      "family_id": "O055",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O060-1",
+      "family_id": "O060",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O060-2",
+      "family_id": "O060",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O064-1",
+      "family_id": "O064",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O064-2",
+      "family_id": "O064",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O067-1",
+      "family_id": "O067",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O067-2",
+      "family_id": "O067",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O068-1",
+      "family_id": "O068",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O068-2",
+      "family_id": "O068",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O071-1",
+      "family_id": "O071",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O071-2",
+      "family_id": "O071",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O072-1",
+      "family_id": "O072",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O072-2",
+      "family_id": "O072",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O074-1",
+      "family_id": "O074",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O074-2",
+      "family_id": "O074",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O080-1",
+      "family_id": "O080",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O080-2",
+      "family_id": "O080",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O082-1",
+      "family_id": "O082",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O082-2",
+      "family_id": "O082",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O086-1",
+      "family_id": "O086",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O086-2",
+      "family_id": "O086",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O087-1",
+      "family_id": "O087",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O087-2",
+      "family_id": "O087",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O089-1",
+      "family_id": "O089",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O089-2",
+      "family_id": "O089",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O090-1",
+      "family_id": "O090",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O090-2",
+      "family_id": "O090",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O092-1",
+      "family_id": "O092",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O092-2",
+      "family_id": "O092",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O093-1",
+      "family_id": "O093",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O093-2",
+      "family_id": "O093",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O095-1",
+      "family_id": "O095",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O095-2",
+      "family_id": "O095",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O099-1",
+      "family_id": "O099",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O099-2",
+      "family_id": "O099",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O105-1",
+      "family_id": "O105",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O105-2",
+      "family_id": "O105",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O106-1",
+      "family_id": "O106",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O106-2",
+      "family_id": "O106",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O116-1",
+      "family_id": "O116",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O116-2",
+      "family_id": "O116",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O125-1",
+      "family_id": "O125",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O125-2",
+      "family_id": "O125",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O126-1",
+      "family_id": "O126",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O126-2",
+      "family_id": "O126",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O129-1",
+      "family_id": "O129",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O129-2",
+      "family_id": "O129",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O130-1",
+      "family_id": "O130",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O130-2",
+      "family_id": "O130",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O134-1",
+      "family_id": "O134",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O134-2",
+      "family_id": "O134",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O139-1",
+      "family_id": "O139",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O139-2",
+      "family_id": "O139",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O153-1",
+      "family_id": "O153",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O153-2",
+      "family_id": "O153",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O154-1",
+      "family_id": "O154",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O154-2",
+      "family_id": "O154",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O166-1",
+      "family_id": "O166",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O166-2",
+      "family_id": "O166",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O169-1",
+      "family_id": "O169",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O169-2",
+      "family_id": "O169",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O173-1",
+      "family_id": "O173",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O173-2",
+      "family_id": "O173",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O174-1",
+      "family_id": "O174",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O174-2",
+      "family_id": "O174",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O176-1",
+      "family_id": "O176",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O176-2",
+      "family_id": "O176",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O184-1",
+      "family_id": "O184",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O184-2",
+      "family_id": "O184",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O189-1",
+      "family_id": "O189",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O189-2",
+      "family_id": "O189",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O195-1",
+      "family_id": "O195",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O195-2",
+      "family_id": "O195",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O203-1",
+      "family_id": "O203",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O203-2",
+      "family_id": "O203",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O204-1",
+      "family_id": "O204",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O204-2",
+      "family_id": "O204",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O211-1",
+      "family_id": "O211",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O211-2",
+      "family_id": "O211",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O214-1",
+      "family_id": "O214",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O214-2",
+      "family_id": "O214",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O222-1",
+      "family_id": "O222",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O222-2",
+      "family_id": "O222",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O225-1",
+      "family_id": "O225",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O225-2",
+      "family_id": "O225",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O230-1",
+      "family_id": "O230",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O230-2",
+      "family_id": "O230",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O238-1",
+      "family_id": "O238",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O238-2",
+      "family_id": "O238",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O244-1",
+      "family_id": "O244",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O244-2",
+      "family_id": "O244",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O246-1",
+      "family_id": "O246",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O246-2",
+      "family_id": "O246",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O248-1",
+      "family_id": "O248",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O248-2",
+      "family_id": "O248",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O249-1",
+      "family_id": "O249",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "O249-2",
+      "family_id": "O249",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "P001-1",
+      "family_id": "P001",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "P001-2",
+      "family_id": "P001",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "P006-1",
+      "family_id": "P006",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "P006-2",
+      "family_id": "P006",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "Q008-1",
+      "family_id": "Q008",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "Q008-2",
+      "family_id": "Q008",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "Q009-1",
+      "family_id": "Q009",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "Q009-2",
+      "family_id": "Q009",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "Q012-1",
+      "family_id": "Q012",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "Q012-2",
+      "family_id": "Q012",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "Q014-1",
+      "family_id": "Q014",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "Q014-2",
+      "family_id": "Q014",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "R003-1",
+      "family_id": "R003",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "R003-2",
+      "family_id": "R003",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "R006-1",
+      "family_id": "R006",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "R006-2",
+      "family_id": "R006",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "R007-1",
+      "family_id": "R007",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "R007-2",
+      "family_id": "R007",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "R008-1",
+      "family_id": "R008",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "R008-2",
+      "family_id": "R008",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S004-1",
+      "family_id": "S004",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S004-2",
+      "family_id": "S004",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S018-1",
+      "family_id": "S018",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S018-2",
+      "family_id": "S018",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S019-1",
+      "family_id": "S019",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S019-2",
+      "family_id": "S019",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S022-1",
+      "family_id": "S022",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S022-2",
+      "family_id": "S022",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S047-1",
+      "family_id": "S047",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S047-2",
+      "family_id": "S047",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S054-1",
+      "family_id": "S054",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S054-2",
+      "family_id": "S054",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S056-1",
+      "family_id": "S056",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S056-2",
+      "family_id": "S056",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S057-1",
+      "family_id": "S057",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S057-2",
+      "family_id": "S057",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S059-1",
+      "family_id": "S059",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S059-2",
+      "family_id": "S059",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S061-1",
+      "family_id": "S061",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S061-2",
+      "family_id": "S061",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S066-1",
+      "family_id": "S066",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S066-2",
+      "family_id": "S066",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S074-1",
+      "family_id": "S074",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S074-2",
+      "family_id": "S074",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S076-1",
+      "family_id": "S076",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S076-2",
+      "family_id": "S076",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S080-1",
+      "family_id": "S080",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S080-2",
+      "family_id": "S080",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S085-1",
+      "family_id": "S085",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S085-2",
+      "family_id": "S085",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S089-1",
+      "family_id": "S089",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S089-2",
+      "family_id": "S089",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S092-1",
+      "family_id": "S092",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S092-2",
+      "family_id": "S092",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S095-1",
+      "family_id": "S095",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S095-2",
+      "family_id": "S095",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S117-1",
+      "family_id": "S117",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S117-2",
+      "family_id": "S117",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S120-1",
+      "family_id": "S120",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S120-2",
+      "family_id": "S120",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S122-1",
+      "family_id": "S122",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S122-2",
+      "family_id": "S122",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S131-1",
+      "family_id": "S131",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S131-2",
+      "family_id": "S131",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S139-1",
+      "family_id": "S139",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S139-2",
+      "family_id": "S139",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S146-1",
+      "family_id": "S146",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S146-2",
+      "family_id": "S146",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S147-1",
+      "family_id": "S147",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S147-2",
+      "family_id": "S147",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S154-1",
+      "family_id": "S154",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S154-2",
+      "family_id": "S154",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S159-1",
+      "family_id": "S159",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S159-2",
+      "family_id": "S159",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S161-1",
+      "family_id": "S161",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S161-2",
+      "family_id": "S161",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S165-1",
+      "family_id": "S165",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S165-2",
+      "family_id": "S165",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S166-1",
+      "family_id": "S166",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S166-2",
+      "family_id": "S166",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S173-1",
+      "family_id": "S173",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S173-2",
+      "family_id": "S173",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S174-1",
+      "family_id": "S174",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S174-2",
+      "family_id": "S174",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S177-1",
+      "family_id": "S177",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S177-2",
+      "family_id": "S177",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S179-1",
+      "family_id": "S179",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S179-2",
+      "family_id": "S179",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S187-1",
+      "family_id": "S187",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S187-2",
+      "family_id": "S187",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S190-1",
+      "family_id": "S190",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S190-2",
+      "family_id": "S190",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S191-1",
+      "family_id": "S191",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S191-2",
+      "family_id": "S191",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S194-1",
+      "family_id": "S194",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S194-2",
+      "family_id": "S194",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S195-1",
+      "family_id": "S195",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S195-2",
+      "family_id": "S195",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S204-1",
+      "family_id": "S204",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S204-2",
+      "family_id": "S204",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S205-1",
+      "family_id": "S205",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S205-2",
+      "family_id": "S205",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S208-1",
+      "family_id": "S208",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S208-2",
+      "family_id": "S208",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S212-1",
+      "family_id": "S212",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S212-2",
+      "family_id": "S212",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S216-1",
+      "family_id": "S216",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S216-2",
+      "family_id": "S216",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S220-1",
+      "family_id": "S220",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S220-2",
+      "family_id": "S220",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S225-1",
+      "family_id": "S225",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S225-2",
+      "family_id": "S225",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S226-1",
+      "family_id": "S226",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S226-2",
+      "family_id": "S226",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S228-1",
+      "family_id": "S228",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S228-2",
+      "family_id": "S228",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S237-1",
+      "family_id": "S237",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S237-2",
+      "family_id": "S237",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S238-1",
+      "family_id": "S238",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S238-2",
+      "family_id": "S238",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S249-1",
+      "family_id": "S249",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S249-2",
+      "family_id": "S249",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S252-1",
+      "family_id": "S252",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S252-2",
+      "family_id": "S252",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S254-1",
+      "family_id": "S254",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S254-2",
+      "family_id": "S254",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S256-1",
+      "family_id": "S256",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S256-2",
+      "family_id": "S256",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S268-1",
+      "family_id": "S268",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S268-2",
+      "family_id": "S268",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S273-1",
+      "family_id": "S273",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S273-2",
+      "family_id": "S273",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S274-1",
+      "family_id": "S274",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S274-2",
+      "family_id": "S274",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S285-1",
+      "family_id": "S285",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S285-2",
+      "family_id": "S285",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S290-1",
+      "family_id": "S290",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S290-2",
+      "family_id": "S290",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S292-1",
+      "family_id": "S292",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "S292-2",
+      "family_id": "S292",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "T001-1",
+      "family_id": "T001",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "T001-2",
+      "family_id": "T001",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "T010-1",
+      "family_id": "T010",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "T010-2",
+      "family_id": "T010",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "X003-1",
+      "family_id": "X003",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    },
+    {
+      "id": "X003-2",
+      "family_id": "X003",
+      "answer_f1": 1.0,
+      "execution_valid": true,
+      "empty_reference": false,
+      "error": null
+    }
+  ],
+  "data_status": [
+    "ontology_derived"
+  ],
+  "created_utc": "2026-11-22T13:42:25.233256+00:00",
+  "seed": 42,
+  "python": "3.12.14",
+  "versions": {
+    "hlo-recommender": "0.2.0",
+    "rdflib": "7.6.0",
+    "numpy": "2.3.5",
+    "scipy": "1.17.0",
+    "torch": null,
+    "transformers": null
+  },
+  "input_sha256": {
+    "data": "ea94600bb867089e31d5bccaef708146df1e285e034a05c2abdf89b1e82e11bb",
+    "ontology": "b8e8bad2545126b90e5bc2a6d6fdfb47af4846ee8fda39eaf56326bd0e9aa342",
+    "catalog": "9821864fc6b2d6722663c15ff8cdb099074c4fc66b195e567bfa729774411a36",
+    "runtime_config": "1510d38c89c41f41d92396af0a7b0b2415889a36c11ed9b057979710fe5a0b67"
+  },
+  "task": "query_evaluation"
+}
+[SKIPPED] train_mt5: Preflight only.
+[SKIPPED] evaluate_mt5: Preflight only.
+Run status: preflight_completed
