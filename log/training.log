@@ -1,0 +1,86 @@
+[2026-11-22 17:32:25] [INFO] ==================================================================
+[2026-11-22 17:32:25] [INFO]            STARTING BAYESIAN KNOWLEDGE TRACING (BKT)              
+[2026-11-22 17:32:25] [INFO] ==================================================================
+[2026-11-22 17:32:25] [INFO] Loading training data from: C:\Users\pc\Downloads\HLO-Pasrt2\HLO-recommendation-system\data\development\assessments.train.jsonl
+[2026-11-22 17:32:25] [INFO] Loading validation data from: C:\Users\pc\Downloads\HLO-Pasrt2\HLO-recommendation-system\data\development\assessments.validation.jsonl
+[2026-11-22 17:32:25] [INFO] Training events count: 960 from 24 learners
+[2026-11-22 17:32:25] [INFO] Validation events count: 320 from 8 learners
+[2026-11-22 17:32:25] [INFO] Unique (learner, skill) sequence tracks: 120
+[2026-11-22 17:32:25] [INFO] Running L-BFGS-B bounded optimization across 6 random restarts...
+[2026-11-22 17:32:25] [INFO]   Restart #1/6 | Initial: [0.2 0.1 0.2 0.1] | Loss: 525.8341 | Converged: True (CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH)
+[2026-11-22 17:32:25] [INFO]   Restart #2/6 | Initial: [0.768 0.176 0.387 0.279] | Loss: 525.8341 | Converged: True (CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH)
+[2026-11-22 17:32:25] [INFO]   Restart #3/6 | Initial: [0.102 0.39  0.343 0.315] | Loss: 525.8341 | Converged: True (CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH)
+[2026-11-22 17:32:25] [INFO]   Restart #4/6 | Initial: [0.136 0.181 0.167 0.371] | Loss: 525.8341 | Converged: True (CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH)
+[2026-11-22 17:32:25] [INFO]   Restart #5/6 | Initial: [0.641 0.329 0.2   0.092] | Loss: 525.8341 | Converged: True (CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH)
+[2026-11-22 17:32:25] [INFO]   Restart #6/6 | Initial: [0.553 0.026 0.373 0.253] | Loss: 525.8341 | Converged: True (CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH)
+[2026-11-22 17:32:25] [INFO] ------------------------------------------------------------------
+[2026-11-22 17:32:25] [INFO] OPTIMIZATION COMPLETE - Best Loss (NLL): 525.8341
+[2026-11-22 17:32:25] [INFO] Learned BKT Parameters:
+[2026-11-22 17:32:25] [INFO]   - Initial Mastery P(L0): 0.1967
+[2026-11-22 17:32:25] [INFO]   - Transition/Learn P(T):  0.1150
+[2026-11-22 17:32:25] [INFO]   - Guess Probability P(G): 0.2623
+[2026-11-22 17:32:25] [INFO]   - Slip Probability P(S):  0.0478
+[2026-11-22 17:32:25] [INFO] ------------------------------------------------------------------
+[2026-11-22 17:32:25] [INFO] Evaluating fitted model on held-out validation set...
+[2026-11-22 17:32:25] [INFO] Validation Metrics:
+[2026-11-22 17:32:25] [INFO]   - Log Loss:  0.5737 (Baseline: 0.7213)
+[2026-11-22 17:32:25] [INFO]   - Accuracy:  71.56% (Baseline: 45.00%)
+[2026-11-22 17:32:25] [INFO]   - ROC-AUC:   0.7450 (Baseline: 0.5000)
+[2026-11-22 17:32:25] [INFO]   - Brier Score: 0.1938 (Baseline: 0.2639)
+[2026-11-22 17:32:25] [INFO] Saved training summary and mastery events to C:\Users\pc\Downloads\HLO-Pasrt2\HLO-recommendation-system\log
+[2026-11-22 17:32:25] [INFO] ==================================================================
+[2026-11-22 17:32:25] [INFO]           RUNNING ADAPTIVE RECOMMENDATION EXPERIMENT              
+[2026-11-22 17:32:25] [INFO] ==================================================================
+[2026-11-22 17:32:41] [INFO] ==================================================================
+[2026-11-22 17:32:41] [INFO]            STARTING BAYESIAN KNOWLEDGE TRACING (BKT)              
+[2026-11-22 17:32:41] [INFO] ==================================================================
+[2026-11-22 17:32:41] [INFO] Loading training data from: C:\Users\pc\Downloads\HLO-Pasrt2\HLO-recommendation-system\data\development\assessments.train.jsonl
+[2026-11-22 17:32:41] [INFO] Loading validation data from: C:\Users\pc\Downloads\HLO-Pasrt2\HLO-recommendation-system\data\development\assessments.validation.jsonl
+[2026-11-22 17:32:41] [INFO] Training events count: 960 from 24 learners
+[2026-11-22 17:32:41] [INFO] Validation events count: 320 from 8 learners
+[2026-11-22 17:32:41] [INFO] Unique (learner, skill) sequence tracks: 120
+[2026-11-22 17:32:41] [INFO] Running L-BFGS-B bounded optimization across 6 random restarts...
+[2026-11-22 17:32:41] [INFO]   Restart #1/6 | Initial: [0.2 0.1 0.2 0.1] | Loss: 525.8341 | Converged: True (CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH)
+[2026-11-22 17:32:41] [INFO]   Restart #2/6 | Initial: [0.768 0.176 0.387 0.279] | Loss: 525.8341 | Converged: True (CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH)
+[2026-11-22 17:32:42] [INFO]   Restart #3/6 | Initial: [0.102 0.39  0.343 0.315] | Loss: 525.8341 | Converged: True (CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH)
+[2026-11-22 17:32:42] [INFO]   Restart #4/6 | Initial: [0.136 0.181 0.167 0.371] | Loss: 525.8341 | Converged: True (CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH)
+[2026-11-22 17:32:42] [INFO]   Restart #5/6 | Initial: [0.641 0.329 0.2   0.092] | Loss: 525.8341 | Converged: True (CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH)
+[2026-11-22 17:32:42] [INFO]   Restart #6/6 | Initial: [0.553 0.026 0.373 0.253] | Loss: 525.8341 | Converged: True (CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH)
+[2026-11-22 17:32:42] [INFO] ------------------------------------------------------------------
+[2026-11-22 17:32:42] [INFO] OPTIMIZATION COMPLETE - Best Loss (NLL): 525.8341
+[2026-11-22 17:32:42] [INFO] Learned BKT Parameters:
+[2026-11-22 17:32:42] [INFO]   - Initial Mastery P(L0): 0.1967
+[2026-11-22 17:32:42] [INFO]   - Transition/Learn P(T):  0.1150
+[2026-11-22 17:32:42] [INFO]   - Guess Probability P(G): 0.2623
+[2026-11-22 17:32:42] [INFO]   - Slip Probability P(S):  0.0478
+[2026-11-22 17:32:42] [INFO] ------------------------------------------------------------------
+[2026-11-22 17:32:42] [INFO] Evaluating fitted model on held-out validation set...
+[2026-11-22 17:32:42] [INFO] Validation Metrics:
+[2026-11-22 17:32:42] [INFO]   - Log Loss:  0.5737 (Baseline: 0.7213)
+[2026-11-22 17:32:42] [INFO]   - Accuracy:  71.56% (Baseline: 45.00%)
+[2026-11-22 17:32:42] [INFO]   - ROC-AUC:   0.7450 (Baseline: 0.5000)
+[2026-11-22 17:32:42] [INFO]   - Brier Score: 0.1938 (Baseline: 0.2639)
+[2026-11-22 17:32:42] [INFO] Saved training summary and mastery events to C:\Users\pc\Downloads\HLO-Pasrt2\HLO-recommendation-system\log
+[2026-11-22 17:32:42] [INFO] ==================================================================
+[2026-11-22 17:32:42] [INFO]           RUNNING ADAPTIVE RECOMMENDATION EXPERIMENT              
+[2026-11-22 17:32:42] [INFO] ==================================================================
+[2026-11-22 17:32:54] [INFO] Ranking Evaluation Comparison:
+[2026-11-22 17:32:54] [INFO]   Metric       | Static Ranking | Adaptive Ranking | Delta
+[2026-11-22 17:32:54] [INFO]   -------------+----------------+------------------+--------
+[2026-11-22 17:32:54] [INFO]   top1         |         1.0000 |           1.0000 | +0.0000
+[2026-11-22 17:32:54] [INFO]   hit3         |         1.0000 |           1.0000 | +0.0000
+[2026-11-22 17:32:54] [INFO]   hit5         |         1.0000 |           1.0000 | +0.0000
+[2026-11-22 17:32:54] [INFO]   mrr          |         1.0000 |           1.0000 | +0.0000
+[2026-11-22 17:32:54] [INFO]   map_at_k     |         1.0000 |           1.0000 | +0.0000
+[2026-11-22 17:32:54] [INFO]   ndcg_at_k    |         0.9161 |           1.0000 | +0.0839
+[2026-11-22 17:32:54] [INFO]   precision_at_k |         0.5333 |           0.5333 | +0.0000
+[2026-11-22 17:32:54] [INFO] Generating visual plots in: C:\Users\pc\Downloads\HLO-Pasrt2\HLO-recommendation-system\log\plots
+[2026-11-22 17:32:55] [INFO] Saved: 1_optimization_loss.png
+[2026-11-22 17:32:55] [INFO] Saved: 2_calibration_curve.png
+[2026-11-22 17:32:55] [INFO] Saved: 3_roc_auc_curve.png
+[2026-11-22 17:32:56] [INFO] Saved: 4_mastery_trajectories.png
+[2026-11-22 17:32:56] [INFO] Saved: 5_ranking_metrics_comparison.png
+[2026-11-22 17:32:57] [INFO] Saved: dashboard_summary.png
+[2026-11-22 17:32:57] [INFO] ==================================================================
+[2026-11-22 17:32:57] [INFO] All logs and charts successfully generated and saved to log/
+[2026-11-22 17:32:57] [INFO] ==================================================================
