@@ -207,6 +207,19 @@ store.close()
     }
     for r in rec_before["ranked"]
 ]
+""",
+
+"""from hlo_recommender.agent import HLORecommenderAgent
+
+agent_store = LearnerStore(store_path, params)
+agent = HLORecommenderAgent(runtime, params, agent_store)
+consultation = agent.consult(
+    "Find resources for arterial blood gas interpretation.",
+    {"level": "Junior", "minutes": 15},
+    learner_id=demo_learner
+)
+agent_store.close()
+consultation
 """
 ]
 
@@ -217,7 +230,8 @@ markdown_headers = [
     "## Optimization Convergence Plot",
     "## Reliability and ROC-AUC Plots",
     "## Trajectories and Ranking Comparison Plots",
-    "## Adaptive Recommendation Pipeline"
+    "## Adaptive Recommendation Pipeline",
+    "## Knowledge-Grounded Recommender Agent"
 ]
 
 def main():

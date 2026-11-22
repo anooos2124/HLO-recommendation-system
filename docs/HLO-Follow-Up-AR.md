@@ -39,7 +39,7 @@ python tools/train_hlo.py
 | قالب SPARQL | 642 / 642 | 1.000 |
 | mT5 | بانتظار التدريب الكامل | — |
 
-[نسخة المحادثة](HLO-Shared-Conversation.md) تتضمن الخطوات والنتائج التاريخية. يسجل مجلد `verification/` فحص الدمج الحالي.
+يسجل مجلد `verification/` فحص الدمج الحالي والتجارب المرجعية للمشروع.
 
 ## سجلات التشغيل وWeights & Biases
 

@@ -79,6 +79,14 @@ def parser():
     rec.add_argument('--bkt-model')
     rec.add_argument('--static', action='store_true')
     rec.add_argument('--output')
+    agent_cmd = commands.add_parser('agent')
+    agent_cmd.add_argument('--question', required=True)
+    agent_cmd.add_argument('--level', choices=['Junior', 'Senior', 'Fellow'], default='Junior')
+    agent_cmd.add_argument('--minutes', type=int, default=15)
+    agent_cmd.add_argument('--learner', default='learner-001')
+    agent_cmd.add_argument('--bkt-model')
+    agent_cmd.add_argument('--database')
+    agent_cmd.add_argument('--output')
     observe = commands.add_parser('observe')
     observe.add_argument('--events', required=True)
     observe.add_argument('--database', required=True)
@@ -202,6 +210,19 @@ def run(args):
         return {'events': len(result), 'updates': result}
     if args.command == 'demo':
         return demo(runtime, args.output)
+    if args.command == 'agent':
+        from .agent import HLORecommenderAgent
+        params = load_parameters(args.bkt_model) if args.bkt_model else BKTParameters(**cfg['bkt'])
+        db_path = args.database or resolve(cfg, cfg['learner_database'])
+        store = LearnerStore(db_path, params)
+        agent = HLORecommenderAgent(runtime, params, store)
+        try:
+            result = agent.consult(args.question, {'level': args.level, 'minutes': args.minutes}, learner_id=args.learner)
+        finally:
+            store.close()
+        if args.output:
+            write_json(args.output, result)
+        return result
     params = load_parameters(args.bkt_model) if args.bkt_model else BKTParameters(**cfg['bkt'])
     store = LearnerStore(args.database or resolve(cfg, cfg['learner_database']), params)
     try:

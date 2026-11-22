@@ -74,4 +74,4 @@ The ontology is preserved byte for byte. The resource catalog is separate and us
 
 ## HLO ontology follow-up
 
-[Ontology experiment, Colab instructions and results](docs/HLO-Follow-Up-AR.md) · [Shared conversation](docs/HLO-Shared-Conversation.md)
+[Ontology experiment, Colab instructions and results](docs/HLO-Follow-Up-AR.md)
