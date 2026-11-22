@@ -11,6 +11,7 @@ Follow the workflow below with the project Python kernel. All modeling, training
 | [SPARQL](Queries/sparql.ipynb) | Ground, generate, validate and execute |
 | [Evaluation](Evaluation/evaluation.ipynb) | Query, prediction and ranking metrics |
 | [Recommendation](Recommendation/recommendation.ipynb) | Retrieve, adapt and export |
+| [Pipeline](pipeline.ipynb) | Training, plotting, and adaptive recommendation |
 
 ```bash
 git clone https://github.com/asgmodel/recommendation-system.git
