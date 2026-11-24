@@ -1,0 +1,104 @@
+{
+  "created_utc": "2026-11-22T14:27:21.950046+00:00",
+  "seed": 42,
+  "python": "3.14.0",
+  "versions": {
+    "hlo-recommender": "0.2.0",
+    "rdflib": "7.6.0",
+    "numpy": "2.5.5",
+    "scipy": "1.18.1",
+    "torch": null,
+    "transformers": null
+  },
+  "input_sha256": {
+    "train": "fe504512082a9ee54d0dd7dfd768122e2c204231886c6398bf6d7eb9a251a796",
+    "validation": "bef2ea324c5bc2ffb9ee2e51dceaded35fbdb79a336a37b0389dd3312478eeb3"
+  },
+  "task": "knowledge_tracing",
+  "status": "trained",
+  "data_status": [
+    "synthetic"
+  ],
+  "parameters": {
+    "initial": 0.19666353973291423,
+    "learn": 0.11498193974412763,
+    "guess": 0.26234493369834516,
+    "slip": 0.04780168585348878
+  },
+  "fit": {
+    "method": "bounded_maximum_likelihood",
+    "negative_log_likelihood": 525.8340815385022,
+    "optimizer_converged": true,
+    "optimizer_message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+    "restarts": 4,
+    "events": 960,
+    "sequences": 120
+  },
+  "validation": {
+    "n": 320,
+    "log_loss": 0.5736979722528737,
+    "brier": 0.19379986599258747,
+    "accuracy": 0.715625,
+    "auc": 0.7450086805555556,
+    "calibration": [
+      {
+        "bin": 3,
+        "n": 194,
+        "predicted": 0.3619213656616722,
+        "observed": 0.27835051546391754
+      },
+      {
+        "bin": 4,
+        "n": 3,
+        "predicted": 0.4713298448269594,
+        "observed": 0.6666666666666666
+      },
+      {
+        "bin": 5,
+        "n": 30,
+        "predicted": 0.5538504315510477,
+        "observed": 0.43333333333333335
+      },
+      {
+        "bin": 6,
+        "n": 20,
+        "predicted": 0.6312659753995382,
+        "observed": 0.55
+      },
+      {
+        "bin": 7,
+        "n": 11,
+        "predicted": 0.7790080520517133,
+        "observed": 0.9090909090909091
+      },
+      {
+        "bin": 8,
+        "n": 14,
+        "predicted": 0.837068631967469,
+        "observed": 0.8571428571428571
+      },
+      {
+        "bin": 9,
+        "n": 48,
+        "predicted": 0.9334097321277892,
+        "observed": 0.875
+      }
+    ]
+  },
+  "validation_constant_baseline": {
+    "n": 320,
+    "log_loss": 0.7212597463673899,
+    "brier": 0.263916015625,
+    "accuracy": 0.45,
+    "auc": 0.5,
+    "calibration": [
+      {
+        "bin": 5,
+        "n": 320,
+        "predicted": 0.578125,
+        "observed": 0.45
+      }
+    ]
+  },
+  "constant_probability": 0.578125
+}
