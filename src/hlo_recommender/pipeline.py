@@ -95,12 +95,14 @@ class Runtime:
         candidates = generator.generate(question, schema, context)
         return {**self.select(candidates), 'target_skills': skills, 'generator': generator.name}
 
-    def recommend(self, question, context, generator, *, state=None, adaptive=True):
+    def recommend(self, question, context, generator, *, state=None, adaptive=True, initial_mastery=None):
         retrieved = self.retrieve(question, context, generator)
         states = state or {}
         mastery = {key: value['mastery'] if isinstance(value, dict) else value for key, value in states.items()}
         if retrieved['status'] != 'executed':
             return {**retrieved, 'ranked': [], 'data_status': self.data_status}
         pool = [self.by_id[key] for key in retrieved['resource_ids']]
-        ranked = rank(pool, context, retrieved['target_skills'], mastery, self.config['weights'], adaptive=adaptive, top_k=self.config['top_k'], initial_mastery=self.config['bkt']['initial'])
+        if initial_mastery is None:
+            initial_mastery = self.config['bkt']['initial']
+        ranked = rank(pool, context, retrieved['target_skills'], mastery, self.config['weights'], adaptive=adaptive, top_k=self.config['top_k'], initial_mastery=initial_mastery)
         return {**retrieved, **ranked, 'data_status': self.data_status, 'gaps': {key: gap(value) for key, value in states.items() if isinstance(value, dict)}, 'ontology_sha256': self.knowledge.ontology_sha256, 'catalog_sha256': self.knowledge.catalog_sha256}

@@ -58,12 +58,12 @@ For each eligible resource $r$, two learner-adaptive features are derived from t
 
 1. **Mastery Gap:**
    $$\text{Gap}(r, \mathbf{m}_u) = \frac{1}{|\mathcal{S}_r|} \sum_{s \in \mathcal{S}_r} (1 - P(L_{t, s}))$$
-   where $\mathcal{S}_r$ denotes the skills covered by resource $r$.
+   where $\mathcal{S}_r$ is the intersection of the skills covered by $r$ and the skills requested in the question. The initial mastery parameter supplies estimates for target skills without observations.
 
 2. **Pedagogical Readiness:**
-   Let $\mathcal{P}_r$ denote the declared prerequisite skills for resource $r$. If $\mathcal{P}_r \neq \emptyset$:
-   $$\text{Readiness}(r, \mathbf{m}_u) = \frac{1}{|\mathcal{P}_r|} \sum_{p \in \mathcal{P}_r} P(L_{t, p})$$
-   If $\mathcal{P}_r = \emptyset$, $\text{Readiness}(r, \mathbf{m}_u) = 1.0$.
+   Let $\bar{m}$ be the mean estimated mastery of the covered target skills and $d_r$ the resource difficulty.
+   $$\text{Readiness}(r, \mathbf{m}_u) = 1 - \left|d_r - (0.15 + 0.75\bar{m})\right|$$
+   Prerequisites are checked during eligibility. Each declared prerequisite requires observed mastery of at least $0.65$ under the default settings.
 
 ## 5. Multi-Criteria Ranking Function
 
@@ -75,7 +75,7 @@ Where:
 * $f_{\text{rel}}$: Ontology relevance score $[0, 1]$.
 * $f_{\text{qual}}$: Curated instructional quality rating $[0, 1]$.
 * $f_{\text{time}}$: Normalized duration fit within the allocated budget $\tau$.
-* $f_{\text{ctx}}$: Contextual alignment score with level $\ell$.
+* $f_{\text{ctx}}$: Mean of the location and activity match indicators. Learner level is checked during eligibility.
 * Standard weights: $w_{\text{qual}} = 0.30$, $w_{\text{read}} = 0.30$, $w_{\text{rel}} = 0.20$, $w_{\text{gap}} = 0.10$, $w_{\text{time}} = 0.05$, $w_{\text{ctx}} = 0.05$.
 
 In the static baseline arm ($w_{\text{gap}} = 0, w_{\text{read}} = 0$), ranking reflects only fixed resource properties and clinical relevance.

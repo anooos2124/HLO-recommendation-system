@@ -70,4 +70,4 @@ The ontology is preserved byte for byte. The resource catalog is separate and us
 
 ## Documentation
 
-[Research Methodology](docs/methodology.md) · [Data Contracts](docs/data_contracts.md) · [Experimental Protocol](docs/experiments.md) · [Notebook Workflows](Notebook/README.md) · [Ontology Experiment](docs/HLO-Follow-Up-AR.md)
+[Research Methodology](docs/methodology.md) · [Data Contracts](docs/data_contracts.md) · [Experimental Protocol](docs/experiments.md) · [Notebook Workflows](Notebook/README.md) · [Ontology Experiment](Notebook/Colab/HLO-Colab-Training.ipynb) · [Duplication Audit](docs/duplication-audit.md)

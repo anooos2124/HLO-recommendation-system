@@ -1,13 +1,12 @@
 """Hybrid Knowledge-Grounded Recommender Agent for HLO."""
 from __future__ import annotations
-from dataclasses import asdict, dataclass
+from dataclasses import dataclass
 from typing import Any, Dict, List, Optional
 from pathlib import Path
 
-from .knowledge import HLO, LEVELS
+from .knowledge import LEVELS
 from .models.bkt import BKTParameters, LearnerStore, load_parameters
 from .pipeline import Runtime
-from .recommendation import Resource
 
 
 @dataclass(frozen=True)
@@ -48,8 +47,9 @@ class KnowledgeTracingTool:
         self.store = store
         self.params = params
 
-    def execute(self, learner_id: str, skills: List[str]) -> AgentToolResult:
-        state = self.store.snapshot(learner_id) if self.store else {}
+    def execute(self, learner_id: str, skills: List[str], *, state: Optional[dict] = None) -> AgentToolResult:
+        if state is None:
+            state = self.store.snapshot(learner_id) if self.store else {}
         mastery_map = {}
         for s in skills:
             raw = state.get(s, self.params.initial)
@@ -71,9 +71,12 @@ class RecommendationRankingTool:
     def __init__(self, runtime: Runtime):
         self.runtime = runtime
 
-    def execute(self, question: str, context: dict, state: Optional[dict] = None) -> AgentToolResult:
+    def execute(self, question: str, context: dict, state: Optional[dict] = None, *,
+                initial_mastery: Optional[float] = None) -> AgentToolResult:
         generator = self.runtime.generator("template")
-        rec = self.runtime.recommend(question, context, generator, state=state, adaptive=True)
+        rec = self.runtime.recommend(
+            question, context, generator, state=state, adaptive=True, initial_mastery=initial_mastery,
+        )
         return AgentToolResult(
             name="recommendation_ranking",
             status=rec.get("status", "ok"),
@@ -96,7 +99,7 @@ class HLORecommenderAgent:
     @classmethod
     def from_config(cls, config_path: str | Path, model_path: Optional[str | Path] = None, store_path: Optional[str | Path] = None) -> HLORecommenderAgent:
         rt = Runtime.from_file(config_path)
-        params = load_parameters(model_path) if model_path else BKTParameters()
+        params = load_parameters(model_path) if model_path else BKTParameters(**rt.config["bkt"])
         store = LearnerStore(store_path, params) if store_path else None
         return cls(rt, params, store)
 
@@ -109,7 +112,7 @@ class HLORecommenderAgent:
     def consult(self, question: str, context: dict, learner_id: str = "default_learner") -> dict:
         if context.get("level") not in LEVELS:
             raise ValueError(f"Invalid learner level. Must be one of {LEVELS}")
-        if not isinstance(context.get("minutes"), int) or context["minutes"] <= 0:
+        if type(context.get("minutes")) is not int or context["minutes"] <= 0:
             raise ValueError("Available time (minutes) must be a positive integer.")
 
         # Step 1: Ontology Grounding
@@ -126,11 +129,13 @@ class HLORecommenderAgent:
         target_skills = [s["uri"] for s in ground_res.data]
 
         # Step 2: Knowledge Tracing via BKT
-        bkt_res = self.bkt_tool.execute(learner_id, target_skills)
-        learner_state = {s: d["mastery"] for s, d in bkt_res.data.items()}
+        learner_state = self.store.snapshot(learner_id) if self.store else {}
+        bkt_res = self.bkt_tool.execute(learner_id, target_skills, state=learner_state)
 
         # Step 3: Candidate Retrieval & Adaptive Ranking
-        rank_res = self.ranking_tool.execute(question, context, state=learner_state)
+        rank_res = self.ranking_tool.execute(
+            question, context, state=learner_state, initial_mastery=self.params.initial,
+        )
         rec_data = rank_res.data
 
         # Step 4: Pedagogical Plan Synthesis
@@ -140,28 +145,28 @@ class HLORecommenderAgent:
                 "resource_id": r["resource_id"],
                 "title": r["title"],
                 "score": round(r["score"], 4),
-                "duration_minutes": r["features"]["time"],
+                "duration_minutes": self.runtime.by_id[r["resource_id"]].minutes,
                 "mastery_gap": round(r["features"]["gap"], 4),
                 "readiness": round(r["features"]["readiness"], 4),
                 "rationale": self._generate_rationale(r)
             })
 
         return {
-            "status": "success",
+            "status": "success" if rank_res.status == "ok" else rank_res.status,
             "learner_id": learner_id,
             "clinical_intent": question,
             "context": context,
             "ontology_grounding": ground_res.data,
             "learner_mastery_diagnosis": bkt_res.data,
             "curriculum": curriculum,
-            "total_eligible_resources": len(curriculum)
+            "total_eligible_resources": rec_data.get("eligible_count", 0)
         }
 
     def _generate_rationale(self, ranked_item: dict) -> str:
         gap_val = ranked_item["features"]["gap"]
         readiness_val = ranked_item["features"]["readiness"]
         if gap_val > 0.7:
-            return "High knowledge gap detected; selected for foundational core competency reinforcement."
+            return "Covers a requested skill with a large estimated mastery gap."
         if readiness_val > 0.8:
-            return "Learner prerequisites satisfied; optimal candidate for progressive case practice."
+            return "Resource difficulty closely matches the learner's estimated mastery."
         return "Balanced resource matching clinical level and allocated study duration."
