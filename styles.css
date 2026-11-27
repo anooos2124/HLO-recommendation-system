@@ -1,0 +1,85 @@
+.gradio-container {
+    max-width: 1160px !important;
+    margin: 0 auto !important;
+}
+
+#hlo-header {
+    margin: 1rem 0 .7rem;
+    padding: 1.6rem 1.75rem;
+    background: #102c33;
+    border: 1px solid #214852;
+    border-radius: 1rem;
+}
+
+#hlo-header h1,
+#hlo-header p {
+    color: #effaf8;
+    margin: 0;
+}
+
+#hlo-header h1 {
+    margin-bottom: .35rem;
+}
+
+#hlo-workspace {
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.hlo-panel {
+    padding: 1rem;
+    border: 1px solid var(--border-color-primary);
+    border-radius: .85rem;
+    background: var(--block-background-fill);
+}
+
+.hlo-count,
+.hlo-notice {
+    padding: .65rem .8rem;
+    border-left: 3px solid var(--color-accent);
+    border-radius: .35rem;
+    background: var(--background-fill-secondary);
+}
+
+.hlo-mastery,
+.hlo-resources {
+    padding: 0;
+    list-style: none;
+}
+
+.hlo-mastery li {
+    display: flex;
+    justify-content: space-between;
+    gap: .75rem;
+    padding: .4rem .75rem .65rem;
+}
+
+.hlo-resource {
+    margin: .55rem 0;
+    padding: .85rem 1rem;
+    border: 1px solid var(--border-color-primary);
+    border-radius: .65rem;
+}
+
+.hlo-resource h3 {
+    font-size: 1.02rem;
+    font-weight: 650;
+}
+
+.hlo-resource p {
+    margin: .45rem 0 0;
+}
+
+.hlo-metrics {
+    display: flex;
+    gap: .35rem;
+    flex-wrap: wrap;
+    margin-top: .45rem;
+}
+
+.hlo-metrics span {
+    padding: .15rem .5rem;
+    border-radius: .35rem;
+    background: var(--background-fill-secondary);
+    font-size: .8rem;
+}

@@ -1,8 +1,31 @@
+---
+title: HLO Learning Recommender
+emoji: 📚
+colorFrom: blue
+colorTo: green
+sdk: gradio
+sdk_version: 6.32.0
+python_version: "3.12"
+app_file: app.py
+suggested_hardware: cpu-basic
+---
+
 # HLO Recommender
 
 Research implementation of ontology-grounded mT5 query generation, BKT mastery tracking, gap detection, and context-aware resource ranking.
 
 ![Architecture](docs/architecture.png)
+
+## Gradio and Hugging Face Spaces
+
+```bash
+python -m pip install -r requirements.txt
+python app.py
+```
+
+Use the URL printed in the terminal. For Hugging Face, create a Gradio Space and copy the project source into the Space repository root. The YAML above selects the SDK and entry point. Keep `app.py`, `styles.css`, `README.md`, `requirements.txt`, and `pyproject.toml` at the root alongside `src/`, `configs/`, `data/`, and `examples/`. The app loads `configs/default.toml`, its ontology and catalog inputs, and `examples/results/bkt_model.json`.
+
+The demo runs on CPU using the SPARQL template and the included BKT model fitted on synthetic data. Practice history is simulated in memory for each request. The recommendation time limit applies to individual resources.
 
 ## Setup
 
